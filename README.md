@@ -1,2 +1,3 @@
-# sql
-This repository for useful SQL queiries
+# Oracle SQL
+
+This repository created for useful SQL queries.
