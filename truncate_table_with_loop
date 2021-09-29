@@ -1,0 +1,24 @@
+
+DECLARE V_QUERY VARCHAR2(4000);
+BEGIN 
+	
+	 FOR l_counter IN 1..37
+  LOOP
+  	
+  SELECT 
+  QUERY INTO V_QUERY
+  FROM (
+  	SELECT 
+  	LEVEL AS l_col,
+'ALTER TABLE dbo.mytablename truncate partition P' || to_char(add_months(to_date(20161231, 'yyyymmdd') , LEVEL-1) , 'yyyymm') || ' DROP STORAGE' AS QUERY
+FROM dual 
+CONNECT BY LEVEL < 38 
+)
+WHERE l_col = l_counter ;
+  
+    --DBMS_OUTPUT.PUT_LINE( V_QUERY );
+   EXECUTE IMMEDIATE V_QUERY;
+  END LOOP;
+
+
+END ;
