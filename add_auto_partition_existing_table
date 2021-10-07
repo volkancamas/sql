@@ -1,6 +1,18 @@
+ 
+ -- Daily
  ALTER TABLE schema.table_name
    MODIFY PARTITION BY RANGE (partition_col_name) 
   INTERVAL ( NUMTODSINTERVAL (1, 'DAY') ) /*interval*/
   ( 
     PARTITION OLD_DATA VALUES LESS THAN (TIMESTAMP '2019-01-01 00:00:00.000000')
   )
+  
+  
+   -- Monthly 
+ ALTER TABLE schema.table_name
+   MODIFY PARTITION BY RANGE (partition_col_name) 
+  INTERVAL ( NUMTOYMINTERVAL (1, 'MONTH') ) /*interval*/
+  ( 
+    PARTITION OLD_DATA VALUES LESS THAN (TIMESTAMP '2019-01-01 00:00:00.000000')
+  )
+
