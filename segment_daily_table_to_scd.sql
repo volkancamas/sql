@@ -1,5 +1,5 @@
 -- Below query could convert daily segment table to Slowly Changing Dimension table.
--- I converted apprx. 8 billion records to 100 million 
+-- I converted apprx. 8 billion records to 46 million 
 
 -- Daily Snapshot daily table  
 
@@ -91,6 +91,7 @@ customer_id       |new_segment|eff_date  |end_date  |
 
 
 -- Query to convert SCD
+-- Elapsed creating table 27 minutes in Sybase IQ Database 
 
 	select 
 	t1.customer_id , 
