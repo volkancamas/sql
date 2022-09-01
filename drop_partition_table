@@ -1,0 +1,9 @@
+declare 
+  v_part varchar(4000);
+BEGIN
+  select LISTAGG(partition_name, ', ') WITHIN GROUP (ORDER BY partition_name DESC)
+  into v_part
+  from ALL_TAB_PARTITIONS where TABLE_OWNER = 'owner_name' and TABLE_NAME = 'table_name'
+  and rownum <300;
+  execute immediate 'ALTER TABLE owner_name.table_name DROP PARTITION ' || v_part ;
+end;  
